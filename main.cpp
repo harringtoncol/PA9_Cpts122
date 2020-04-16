@@ -1,52 +1,21 @@
-#include "map.h"
+#include<SFML/Graphics.hpp>
+#include <string>
+#include <iostream>
+#include "PlayerManager.h"
+#include "GameObject.h"
 
-int main(int argc, char const* argv[])
-{
-    srand(time(NULL));
-    //Declare variables
-    float dx, dy, speed = 5;
-    dx = 0;
-    dy = 0;
-    Map map;
+
+
+int main(int argc, char const* argv[]) {
+
     //Create Window
-    sf::RenderWindow window(sf::VideoMode(400, 400), "Pong SFML C++");
+    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Pong SFML C++");
     window.setFramerateLimit(30);
 
-    //Create a rectangle to represent the player
-    sf::RectangleShape player(sf::Vector2f(10, 10));
-    player.setFillColor(sf::Color::White);
-    player.setPosition(200, 200);
+	PlayerManager playerManager;
 
     //Game Loop
-    while (window.isOpen())
-    {
-        sf::Vector2f pPos = player.getPosition();
-        //Input detection
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-            dx = speed;
-            dy = speed;
-        }
-	bool A = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-	bool D = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
-	bool W = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
-	bool S = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
-	if (A && !D)
-          if (!map.checkCollisionLeft(pPos))
-            player.move(-speed, 0);
-        pPos = player.getPosition();
-	if (D && !A)
-          if (!map.checkCollisionRight(pPos))
-            player.move(speed, 0);
-        pPos = player.getPosition();
-	if (W && !S)
-          if (!map.checkCollisionUp(pPos))
-            player.move(0, -speed);
-        pPos = player.getPosition();
-	if (S && !W)
-          if (!map.checkCollisionDown(pPos))
-            player.move(0, speed);
-        pPos = player.getPosition();
-
+    while (window.isOpen()) {
         //Check if the window was closed
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -55,10 +24,12 @@ int main(int argc, char const* argv[])
 
         //Render
         window.clear();
-      
-        map.displayMap(window);
-        window.draw(player);
-   
+		
+		for (int i = 0; i < GameObject::GameObjects.size(); i++)
+		{
+			GameObject::GameObjects[i]->Update(window);
+		}
+		
         window.display();
     }
     return 0;
