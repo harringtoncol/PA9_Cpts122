@@ -25,7 +25,7 @@ class Map
     {
       for (int i = 0; i < WIDTH; ++i)
         for (int j = 0; j < HEIGHT; ++j)
-	  map[i][j] = (rand() % 15) == 0;
+	  map[i][j] = (rand() % 15) == 0 ? WALL : AIR;
     }
     void displayMap(sf::RenderWindow &window)
     {
@@ -33,7 +33,7 @@ class Map
       wall.setFillColor(sf::Color::Blue);
       for (int i = 0; i < WIDTH; ++i)
         for (int j = 0; j < HEIGHT; ++j)
-	  if (map[i][j] == 1)
+	  if (map[i][j] == WALL)
 	  {
 	    wall.setPosition(i * 10, j * 10);
 	    window.draw(wall);
