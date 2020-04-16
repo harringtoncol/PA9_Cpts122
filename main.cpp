@@ -1,12 +1,13 @@
-#include<SFML/Graphics.hpp>
-#include<string>
+#include "map.h"
 
-int main(int argc, char const* argv[]) {
+int main(int argc, char const* argv[])
+{
+    srand(time(NULL));
     //Declare variables
     float dx, dy, speed = 5;
     dx = 0;
     dy = 0;
-
+    Map map;
     //Create Window
     sf::RenderWindow window(sf::VideoMode(400, 400), "Pong SFML C++");
     window.setFramerateLimit(30);
@@ -17,25 +18,35 @@ int main(int argc, char const* argv[]) {
     player.setPosition(200, 200);
 
     //Game Loop
-    while (window.isOpen()) {
+    while (window.isOpen())
+    {
         sf::Vector2f pPos = player.getPosition();
         //Input detection
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
             dx = speed;
             dy = speed;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            if (pPos.x > 0)
-                player.move(-speed, 0);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            if (pPos.x < 400 - 10)
-                player.move(speed, 0);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            if(pPos.y > 0)
+	bool A = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+	bool D = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+	bool W = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+	bool S = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+	if (A && !D)
+          if (!map.checkCollisionLeft(pPos))
+            player.move(-speed, 0);
+        pPos = player.getPosition();
+	if (D && !A)
+          if (!map.checkCollisionRight(pPos))
+            player.move(speed, 0);
+        pPos = player.getPosition();
+	if (W && !S)
+          if (!map.checkCollisionUp(pPos))
             player.move(0, -speed);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            if(pPos.y < 400-10)
+        pPos = player.getPosition();
+	if (S && !W)
+          if (!map.checkCollisionDown(pPos))
             player.move(0, speed);
+        pPos = player.getPosition();
+
         //Check if the window was closed
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -45,6 +56,7 @@ int main(int argc, char const* argv[]) {
         //Render
         window.clear();
       
+        map.displayMap(window);
         window.draw(player);
    
         window.display();
