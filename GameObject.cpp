@@ -17,8 +17,13 @@ GameObject::~GameObject()
 	while (it != GameObjects.end())
 	{
 		if (*it == this)
-			GameObjects.erase(it);
-		it++;
+		{
+			it = GameObjects.erase(it);
+		}
+		else
+		{
+			it++;
+		}
 	}
 
 }
