@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include "GameObject.h"
+#include "Pistol.h"
+#include "Wepon.h"
 class Player : public GameObject {
 private:
 	const float SPEED = 50, ROTATIONAL_SPEED = 4;
@@ -19,12 +21,13 @@ protected:
 	void walkingAnimation(float);
 	void rotateTo(float);
 	double deltaTime();
-
+	Wepon* currentWepon;
 public:
+	Player(int renderLayer);
 	Player();
 	void Move(sf::Vector2f direction, double distance);
 	void Update(sf::RenderWindow& Window) override;
 	void takeDamage(float damage);
-
+	void attack();
 
 };

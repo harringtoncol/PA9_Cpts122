@@ -2,7 +2,7 @@
 
 PlayerManager::PlayerManager()
 {
-	currentPlayer = new Player();
+	currentPlayer = new Player(3);
 }
 PlayerManager::~PlayerManager()
 {
