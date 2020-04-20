@@ -1,7 +1,6 @@
 #define WIDTH 40
 #define HEIGHT 40
 
-#pragma once
 #include <stdio.h>
 #include <time.h>
 
@@ -16,7 +15,7 @@ enum Obstacle
 
 class Map
 {
-  protected:
+  private:
     int map[WIDTH][HEIGHT];
   public:
     Map();
