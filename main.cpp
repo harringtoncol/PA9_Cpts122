@@ -13,7 +13,7 @@ int main(int argc, char const* argv[]) {
     window.setFramerateLimit(30);
 
 	PlayerManager playerManager;
-
+	Utility ut;
     //Game Loop
     while (window.isOpen()) {
         //Check if the window was closed
@@ -23,8 +23,9 @@ int main(int argc, char const* argv[]) {
         }
 
         //Render
-        window.clear();
-		
+        window.clear(sf::Color::Green);
+		//std::cout << GameObject::GameObjects[0]->renderLayer << GameObject::GameObjects[1]->renderLayer << GameObject::GameObjects[2]->renderLayer;
+
 		for (int i = 0; i < GameObject::GameObjects.size(); i++)
 		{
 			GameObject::GameObjects[i]->Update(window);

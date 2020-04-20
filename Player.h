@@ -6,6 +6,8 @@
 #include "GameObject.h"
 #include "Pistol.h"
 #include "Wepon.h"
+#include "Utilitys.h"
+
 class Player : public GameObject {
 private:
 	const float SPEED = 50, ROTATIONAL_SPEED = 4;
@@ -14,13 +16,11 @@ private:
 	sf::Texture texture[4];
 	sf::Clock clock;
 	float animTime;
-	const float Rad2Deg = 180.0 / 3.14;
 	int textureIndex;
-
+	void initialization();
 protected:
 	void walkingAnimation(float);
 	void rotateTo(float);
-	double deltaTime();
 	Wepon* currentWepon;
 public:
 	Player(int renderLayer);
