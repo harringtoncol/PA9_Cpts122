@@ -1,6 +1,6 @@
 #pragma once
-#include "Wepon.h"
-class Pistol : public Wepon {
+#include "Weapon.h"
+class Pistol : public Weapon {
 public:
 	Pistol(int renderLayer);
 	Pistol();

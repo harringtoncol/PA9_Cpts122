@@ -6,7 +6,8 @@ private:
 	bool isOpen;
 	bool isBackpackToHotBar;
 public:
-	Backpack(int arrSize) :Inventory(arrSize) {
+	Backpack(int arrSize = 0);
+	Backpack(int arrSize, int renderLayer) :Inventory(arrSize, renderLayer) {
 		return;
 	}
 	void Update(sf::RenderWindow& window);

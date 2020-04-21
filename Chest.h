@@ -6,7 +6,7 @@ private:
 	bool isOpen;
 	bool isChestToHotBar;
 public: 
-	Chest(int arrSize) :Inventory(arrSize) {
+	Chest(int arrSize, int renderLayer) :Inventory(arrSize, renderLayer) {
 		return;
 	}
 	void Update(sf::RenderWindow& window);

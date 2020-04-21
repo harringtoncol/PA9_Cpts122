@@ -95,8 +95,6 @@ void Player::rotateTo(float angle)
 
 
 
-
-
 void Player::takeDamage(float damage)
 {
 }

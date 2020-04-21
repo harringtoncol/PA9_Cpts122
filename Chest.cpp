@@ -1,3 +1,4 @@
+#pragma once
 #include "Chest.h"
 
 
@@ -34,8 +35,9 @@ void Chest::displayInventory(sf::RenderWindow& window, int rows, int cols)
 void Chest::setRandItems(Chest chest) {
 	int totalItemsToArray = rand() + length + 1;
 	int item = 0;
+	Items totalItems;
 	for (int i = 0; i < totalItemsToArray; i++) {
-		item = rand() + maxItems + 1;////////////////////////////////////////
+		item = rand() + totalItems.maxItems + 1;
 		chest.add(i, item);
 	}
 }

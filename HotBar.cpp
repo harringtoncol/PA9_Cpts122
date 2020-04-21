@@ -1,6 +1,13 @@
 #include "HotBar.h"
 
 
+HotBar::HotBar(int arrSize)
+{
+	arr = new int[arrSize];
+	length = arrSize;
+	clear(); //Zeros out the arrIsEmpty
+}
+
 void HotBar::Update(sf::RenderWindow& window)
 {
 	HotBar::displayInventory(window, 1, 3);

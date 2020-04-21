@@ -4,9 +4,12 @@
 #include <iostream>
 #include <fstream>
 #include "GameObject.h"
+#include "Backpack.h"
+#include "HotBar.h"
 #include "Pistol.h"
-#include "Wepon.h"
+#include "Weapon.h"
 #include "Utilitys.h"
+
 
 class Player : public GameObject {
 private:
@@ -21,7 +24,7 @@ private:
 protected:
 	void walkingAnimation(float);
 	void rotateTo(float);
-	Wepon* currentWepon;
+	Weapon* currentWepon;
 public:
 	Player(int renderLayer);
 	Player();

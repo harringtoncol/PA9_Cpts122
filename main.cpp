@@ -21,7 +21,7 @@ int main(int argc, char const* argv[]) {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) window.close();
         }
-
+        
         //Render
         window.clear(sf::Color::Green);
 		//std::cout << GameObject::GameObjects[0]->renderLayer << GameObject::GameObjects[1]->renderLayer << GameObject::GameObjects[2]->renderLayer;

@@ -1,20 +1,17 @@
 #include "Inventory.h"
 
 
-Inventory::Inventory(int arrSize) { //Constructor
+Inventory::Inventory(int arrSize)
+{
 	arr = new int[arrSize];
 	length = arrSize;
 	clear(); //Zeros out the arrIsEmpty
 }
 
-void Inventory::Update(sf::RenderWindow& window)
-{
-	return;
-}
-
-void Inventory::displayInventory(sf::RenderWindow& window, int rows, int cols)
-{
-	return;
+Inventory::Inventory(int arrSize, int renderLayer): GameObject(renderLayer) { //Constructor
+	arr = new int[arrSize];
+	length = arrSize;
+	clear(); //Zeros out the arrIsEmpty
 }
 
 void Inventory::printCells(sf::RenderWindow& window, int posX, int posY, int rows, int cols)

@@ -14,9 +14,8 @@ protected:
 	int length; //Length of array and should only be in intervals of 3 (Player inventory = 3, Chest = 9, Backpack = 9)
 	int itemsInArr;
 public:
-	Inventory(int arrSize = 0); //Creates an array of size zero, unless specificied otherwise
-	virtual void Update(sf::RenderWindow& window);
-	virtual void displayInventory(sf::RenderWindow& window, int rows, int cols);
+	Inventory(int arrSize = 0);
+	Inventory(int arrSize, int renderLayer); //Creates an array of size zero, unless specificied otherwise
 	void printCells(sf::RenderWindow& window, int posX, int posY, int rows, int cols);
 	void printOneCell(sf::RenderWindow& window, int lastPosX, int lastPosY, int count);
 	bool add(int idx, int val);

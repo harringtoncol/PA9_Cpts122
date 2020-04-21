@@ -1,6 +1,6 @@
 #include "Pistol.h"
 
-Pistol::Pistol(int renderLayer) : Wepon(renderLayer)
+Pistol::Pistol(int renderLayer) : Weapon(renderLayer)
 {
 	initalization();
 }
