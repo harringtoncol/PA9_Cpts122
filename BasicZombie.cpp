@@ -2,7 +2,7 @@
 #include "Player.h"
 
 BasicZombie::BasicZombie() : GameObject(){
-	texture.loadFromFile("BasicZombie1.png", sf::IntRect(0, 0, 200, 200));
+	texture.loadFromFile("ZombieTop.png", sf::IntRect(0, 0, 200, 200));
 	name = "mob";
 	zombieObj.setTexture(texture);
 	int x = rand() % 600 + 1;
@@ -93,7 +93,7 @@ void BasicZombie::move() {
 		
 		for (int i = 0; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if ((zombiePos.x + speed) > GameObjects[i]->position.x)
+			if ((((zombiePos.x + speed) < GameObjects[i]->position.x) && (zombiePos.x + speed) > ((int)GameObjects[i]->position.x + 100)) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
 				cont = false;
 		}
 		if (cont) {
@@ -105,7 +105,7 @@ void BasicZombie::move() {
 	 if (playerPos.x-100 < zombiePos.x && !moved) {
 		for (int i = 0; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if ((zombiePos.x - speed) < GameObjects[i]->position.x)
+			if ((((zombiePos.x - speed / 2) > GameObjects[i]->position.x) && (zombiePos.x + speed / 2) < ((int)GameObjects[i]->position.x + 100)) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
 				cont = false;
 		}
 		if (cont) {
@@ -118,7 +118,7 @@ void BasicZombie::move() {
 
 		for (int i = 0; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if ((zombiePos.y - speed) < GameObjects[i]->position.y)
+			if (((((zombiePos.y - speed) < GameObjects[i]->position.y) && (zombiePos.y - speed) > ((int)GameObjects[i]->position.y + 100)) ) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
 				cont = false;
 		}
 		if (cont) {
@@ -131,7 +131,7 @@ void BasicZombie::move() {
 
 		for (int i = 2; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if ((zombiePos.y + speed) > GameObjects[i]->position.y)
+			if (((((zombiePos.y + speed) > GameObjects[i]->position.y) && (zombiePos.y + speed) < ((int)GameObjects[i]->position.y - 100)) ) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
 				cont = false;
 		}
 		if (cont) {
@@ -141,4 +141,33 @@ void BasicZombie::move() {
 
 	}
 	position = zombieObj.getPosition();
+}
+
+
+
+void BasicZombie::takeDamage(double i) {
+	health = health - i;
+
+	if (health <= 0) {
+		int j = 0;
+		for (int i = 0; i < GameObjects.size(); i++) {
+			if ((GameObjects[i]->position.x == zombieObj.getPosition().x) && (GameObjects[i])->position.y) {
+				j = i;
+			}
+		}
+		for (; i < GameObjects.size()-1; j++) {
+			GameObjects[j] = GameObjects[j + 1];
+		}
+	}
+
+}
+
+BasicZombie::~BasicZombie() {
+	std::cout << "Zombie has died";
+
+
+}
+
+int BasicZombie::dealDamage() {
+	return damage;
 }

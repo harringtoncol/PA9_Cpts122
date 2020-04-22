@@ -5,7 +5,7 @@
 
 class BasicZombie : public GameObject {
 private:
-	double speed = 10;
+	double speed = 4;
 	double damage = 20;
 	double health = 100;
 	sf::Sprite zombieObj;
@@ -13,7 +13,7 @@ private:
 	sf::Texture texture;
 public:
 	BasicZombie();
-	
+	~BasicZombie();
 	void move();
 	void Update(sf::RenderWindow& Window) override;
 	void takeDamage(double);
