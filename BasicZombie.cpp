@@ -24,7 +24,7 @@ void BasicZombie::move() {
 	bool cont = true;
 	sf::Vector2f zombiePos = zombieObj.getPosition();
 	printf("Zombie %lf  %lf\n\n\n", zombiePos.x, zombiePos.y);
-	sf::Vector2f playerPos = GameObjects[GameObject::GameObjects.size()-1]->position;
+	sf::Vector2f playerPos = GameObjects[GameObject::GameObjects.size()-3]->position;
 	printf("Player %lf %lf\n\n\n\n", playerPos.x, playerPos.y);
 
 	bool moved = false;
