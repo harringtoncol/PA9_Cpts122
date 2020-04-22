@@ -2,6 +2,7 @@
 
 GameObject::GameObject(int renderLayer = 0)
 {
+	position = sf::Vector2f(-99, -99);
 	this->renderLayer = renderLayer;
 	GameObjects.push_back(this);
 	std::sort(GameObjects.begin(), GameObjects.end(), [](const GameObject* lhs, const GameObject* rhs) {
