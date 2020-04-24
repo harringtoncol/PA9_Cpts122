@@ -19,13 +19,17 @@ BasicZombie::BasicZombie() : GameObject(){
 	//zombieObj.setOrigin(100, 100);
 	zombieObj.setPosition(x, y);
 	position = zombieObj.getPosition();
+	index = 0;
 }
 
 
 
 void BasicZombie::Update(sf::RenderWindow& window) {
-
-	move();
+	index++;
+	if (index == 5) {
+		move();
+		index = 0;
+	}
 	window.draw(zombieObj);
 }
 
