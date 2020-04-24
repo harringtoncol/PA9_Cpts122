@@ -2,9 +2,18 @@
 #include "Player.h"
 
 BasicZombie::BasicZombie() : GameObject(){
-	texture.loadFromFile("ZombieTop.png", sf::IntRect(0, 0, 200, 200));
+	
 	name = "mob";
-	zombieObj.setTexture(texture);
+	textureN.loadFromFile("ZombieTopN.png", sf::IntRect(0, 0, 200, 200));
+	textureNE.loadFromFile("ZombieTopNE.png", sf::IntRect(0, 0, 200, 200));
+	textureSE.loadFromFile("ZombieTopSE.png", sf::IntRect(0, 0, 200, 200));
+	textureSW.loadFromFile("ZombieTopSW.png", sf::IntRect(0, 0, 200, 200));
+	textureNW.loadFromFile("ZombieTopNW.png", sf::IntRect(0, 0, 200, 200));
+	textureE.loadFromFile("ZombieTopE.png", sf::IntRect(0, 0, 200, 200));
+	textureW.loadFromFile("ZombieTopW.png", sf::IntRect(0, 0, 200, 200));
+	textureS.loadFromFile("ZombieTopS.png", sf::IntRect(0, 0, 200, 200));
+	texture = &textureN;
+	zombieObj.setTexture(*texture);
 	int x = rand() % 600 + 1;
 	int y = rand() % 600 + 1;
 	//zombieObj.setOrigin(100, 100);
@@ -26,7 +35,7 @@ void BasicZombie::move() {
 	printf("Zombie %lf  %lf\n\n\n", zombiePos.x, zombiePos.y);
 	sf::Vector2f playerPos = GameObjects[GameObject::GameObjects.size()-3]->position;
 	printf("Player %lf %lf\n\n\n\n", playerPos.x, playerPos.y);
-
+	
 	bool moved = false;
 	//If NE
 	if (playerPos.x > zombiePos.x && playerPos.y > zombiePos.y) {
@@ -42,6 +51,9 @@ void BasicZombie::move() {
 			if (cont) {
 				zombieObj.setPosition(zombiePos.x + (speed / 2), zombiePos.y + (speed / 2));
 				moved = true;
+				zombieObj.setTexture(textureSE);
+				
+				//zombieObj.setRotation(zombieObj.getRotation() + 180);
 			}
 		}
 	//If SE
@@ -57,6 +69,9 @@ void BasicZombie::move() {
 			if (cont) {
 				zombieObj.setPosition(zombiePos.x - (speed / 2), zombiePos.y + (speed / 2));
 				moved = true;
+				
+				zombieObj.setTexture(textureSW);
+				
 			}
 		}
 	//If SW
@@ -72,6 +87,8 @@ void BasicZombie::move() {
 			if (cont) {
 				zombieObj.setPosition(zombiePos.x - (speed / 2), zombiePos.y - (speed / 2));
 				moved = true;
+				
+				zombieObj.setTexture(textureNW);
 			}
 		}
 	//If NW
@@ -85,6 +102,9 @@ void BasicZombie::move() {
 	}
 			if (cont) {
 				zombieObj.setPosition(zombiePos.x + (speed / 2), zombiePos.y - (speed / 2));
+				
+				zombieObj.setTexture(textureNE);
+				moved = true;
 			}
 		}
 	cont = true;
@@ -99,6 +119,7 @@ void BasicZombie::move() {
 		if (cont) {
 			zombieObj.setPosition(zombiePos.x + speed, zombiePos.y);
 			
+			zombieObj.setTexture(textureE);
 		}
 	}
 	//If W
@@ -111,6 +132,7 @@ void BasicZombie::move() {
 		if (cont) {
 			zombieObj.setPosition(zombiePos.x - speed, zombiePos.y);
 			
+			zombieObj.setTexture(textureW);
 		}
 	}
 	//If N
@@ -123,6 +145,8 @@ void BasicZombie::move() {
 		}
 		if (cont) {
 			zombieObj.setPosition(zombiePos.x, zombiePos.y - speed);
+			
+			zombieObj.setTexture(textureN);
 			
 		}
 	}
@@ -137,6 +161,7 @@ void BasicZombie::move() {
 		if (cont) {
 			zombieObj.setPosition(zombiePos.x, zombiePos.y+ speed);
 			
+			zombieObj.setTexture(textureS);
 		}
 
 	}
