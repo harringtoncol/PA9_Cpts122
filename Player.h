@@ -26,6 +26,8 @@ protected:
 	void rotateTo(float);
 	Weapon* currentWepon;
 public:
+	HotBar playerInventory;
+	Backpack playerBackpack;
 	Player(int renderLayer);
 	Player();
 	void Move(sf::Vector2f direction, double distance);

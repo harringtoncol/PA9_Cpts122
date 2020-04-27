@@ -6,17 +6,25 @@ Map::Map()
     for (int j = 0; j < HEIGHT; ++j)
       map[i][j] = (rand() % 15) == 0 ? WALL : AIR;
 }
+Map::Map(int renderLayer) : GameObject(renderLayer) {
+    for (int i = 0; i < WIDTH; ++i)
+        for (int j = 0; j < HEIGHT; ++j)
+            map[i][j] = (rand() % 15) == 0 ? WALL : AIR;
+}
 void Map::displayMap(sf::RenderWindow &window)
 {
-  sf::RectangleShape wall(sf::Vector2f(10, 10));
+  sf::RectangleShape wall(sf::Vector2f(30, 30));
   wall.setFillColor(sf::Color::Blue);
   for (int i = 0; i < WIDTH; ++i)
     for (int j = 0; j < HEIGHT; ++j)
       if (map[i][j] == WALL)
       {
-        wall.setPosition(i * 10, j * 10);
+        wall.setPosition(i * 30, j * 30);
 	window.draw(wall);
       }
+}
+void Map::Update(sf::RenderWindow& window) {
+    displayMap(window);
 }
 bool Map::checkCollisionUp(sf::Vector2f &pPos)
 {

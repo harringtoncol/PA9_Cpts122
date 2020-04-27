@@ -16,7 +16,7 @@ void HotBar::Update(sf::RenderWindow& window)
 void HotBar::displayInventory(sf::RenderWindow& window, int rows, int cols)
 {
 	sf::RectangleShape inventoryBackground(sf::Vector2f(INVENTORY_BACKGROUND_LENGTH_HEIGHT, (CELL_LENGTH_HEIGHT + 10)));
-	inventoryBackground.setFillColor(sf::Color::Blue);
+	inventoryBackground.setFillColor(sf::Color::Magenta);
 
 	int posX = 450;
 	int posY = 900;

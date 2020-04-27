@@ -23,10 +23,10 @@ void Backpack::Update(sf::RenderWindow& window)
 void Backpack::displayInventory(sf::RenderWindow& window, int rows, int cols)
 {
 	sf::RectangleShape inventoryBackground(sf::Vector2f(INVENTORY_BACKGROUND_LENGTH_HEIGHT, INVENTORY_BACKGROUND_LENGTH_HEIGHT));
-	inventoryBackground.setFillColor(sf::Color::Blue);
+	inventoryBackground.setFillColor(sf::Color::Magenta);
 
-	int posX = (900 / 2);
-	int posY = (900 / 2);
+	int posX = 450;
+	int posY = 450;
 	inventoryBackground.setPosition(posX, posY);
 	window.draw(inventoryBackground);
 

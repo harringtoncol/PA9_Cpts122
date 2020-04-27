@@ -1,5 +1,5 @@
-#define WIDTH 40
-#define HEIGHT 40
+#define WIDTH 450
+#define HEIGHT 450
 
 #pragma once
 #include <stdio.h>
@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "GameObject.h"
 
 enum Obstacle
 {
@@ -14,13 +15,15 @@ enum Obstacle
   WALL
 };
 
-class Map
+class Map : public GameObject
 {
   protected:
     int map[WIDTH][HEIGHT];
   public:
     Map();
+    Map(int renderLayer);
     void displayMap(sf::RenderWindow &window);
+    void Update(sf::RenderWindow& window) override;
     bool checkCollisionUp(sf::Vector2f &pPos);
     bool checkCollisionDown(sf::Vector2f &pPos);
     bool checkCollisionLeft(sf::Vector2f &pPos);

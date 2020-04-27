@@ -52,7 +52,7 @@ void Player::Update(sf::RenderWindow& window)
 
 
 void Player::initialization()
-{
+{	
 	textureIndex = 0;
 	animTime = 0;
 	currentWepon = new Pistol(1);

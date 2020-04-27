@@ -9,14 +9,15 @@
 #include <time.h>
 
 int main(int argc, char const* argv[]) {
-   // Map map;
     //Create Window
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "Dungeon crawler C++");
     window.setFramerateLimit(30);
 
+    
 	PlayerManager playerManager;
     Utility ut;
+    Map map(1);
     int i = rand() % 6 + 1;
     i = 7;
     printf("%d", i);
