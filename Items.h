@@ -7,7 +7,7 @@
 class Items : public GameObject
 { 
 public:
-	int maxItems;
+	int maxItems = 2;
 	int getRandItem();
 	void printItem(sf::RenderWindow& window, int posX, int posY, int item);
 };

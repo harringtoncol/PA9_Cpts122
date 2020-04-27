@@ -3,10 +3,15 @@
 
 
 
+Chest::Chest() {
+	return;
+}
+
 void Chest::Update(sf::RenderWindow& window)
 {
 	sf::RectangleShape inventoryBackground(sf::Vector2f(75, 50));
-	inventoryBackground.setFillColor(sf::Color::Magenta);
+	inventoryBackground.setFillColor(sf::Color::Cyan);
+	inventoryBackground.setPosition(xPos, yPos);
 	window.draw(inventoryBackground);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) {
 		isOpen = true;
@@ -33,11 +38,11 @@ void Chest::displayInventory(sf::RenderWindow& window, int rows, int cols)
 }
 
 void Chest::setRandItems(Chest chest) {
-	int totalItemsToArray = rand() + length + 1;
+	int totalItemsToArray = (rand() % length) + 1;
 	int item = 0;
-	Items totalItems;
+	Items thing;
 	for (int i = 0; i < totalItemsToArray; i++) {
-		item = rand() + totalItems.maxItems + 1;
+		item = thing.getRandItem();
 		chest.add(i, item);
 	}
 }

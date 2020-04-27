@@ -6,9 +6,12 @@ private:
 	bool isOpen;
 	bool isChestToHotBar;
 public: 
+	Chest();
 	Chest(int arrSize, int renderLayer) :Inventory(arrSize, renderLayer) {
 		return;
 	}
+	int xPos;
+	int yPos;
 	void Update(sf::RenderWindow& window);
 	void displayInventory(sf::RenderWindow& window, int rows, int cols);
 	void setRandItems(Chest chest);

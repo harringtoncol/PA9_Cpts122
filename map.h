@@ -8,17 +8,20 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "GameObject.h"
+#include "Chest.h"
 
 enum Obstacle
 {
   AIR,
-  WALL
+  WALL,
+  CHEST
 };
 
 class Map : public GameObject
 {
   protected:
     int map[WIDTH][HEIGHT];
+    Chest chest;
   public:
     Map();
     Map(int renderLayer);
