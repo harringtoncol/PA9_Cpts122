@@ -31,6 +31,13 @@ void Map::displayMap(sf::RenderWindow &window)
 	window.draw(wall);
       }
       else if (map[i][j] == CHEST) {
+          int count = 0;
+          for (int i = 0; i < 9; i++) {
+                if (!chest.isEmptyIdx(i)) {
+                    count++;
+                }
+          }
+          if(count == 0) chest.setRandItems(chest);
           chest.Update(window);
       }
 }
