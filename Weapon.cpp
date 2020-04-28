@@ -3,6 +3,7 @@
 void Weapon::Initialization()
 {
 	damage = 10;
+	angleOffset = 60;
 	offsetPos = sf::Vector2f(35, 35);
 	ammo = 0;
 	canFire = true;
@@ -10,8 +11,11 @@ void Weapon::Initialization()
 
 void Weapon::Update(sf::RenderWindow& window)
 {
-	window.draw(sprite);
-	fireTimer();
+	if (enabled)
+	{
+		window.draw(sprite);
+		fireTimer();
+	}
 }
 
 void Weapon::attack()
@@ -26,7 +30,7 @@ void Weapon::attack()
 void Weapon::SetPosition(const sf::Vector2f& position)
 {
 	double angle = sprite.getRotation();
-	sf::Vector2f localOffset = sf::Vector2f(cos((angle - 60) * Utility::Deg2Rad) * offsetPos.x, sin((angle - 60) * Utility::Deg2Rad) * offsetPos.y);
+	sf::Vector2f localOffset = sf::Vector2f(cos((angle - angleOffset) * Utility::Deg2Rad) * offsetPos.x, sin((angle - angleOffset) * Utility::Deg2Rad) * offsetPos.y);
 	sprite.setPosition(position + localOffset);
 }
 
@@ -37,7 +41,7 @@ void Weapon::SetRotation(const float angle)
 
 void Weapon::fireTimer()
 {
-	if (clk.getElapsedTime().asMilliseconds() > 200)
+	if (clk.getElapsedTime().asMilliseconds() > fireSpeed)
 	{
 		canFire = true;
 		clk.restart();

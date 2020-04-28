@@ -2,6 +2,7 @@
 #include <iostream>
 #include "GameObject.h"
 #include <SFML/Graphics.hpp>
+#include "Utilitys.h"
 class Bullet : GameObject {
 public:
 	Bullet(std::string spriteName, const sf::Vector2f startPos,float rotation, float speed);
@@ -11,6 +12,6 @@ private:
 	sf::Sprite sprite;
 	float speed;
 	float rotation;
-	const float Rad2Deg = 180 / 3.14;
-
+	float currentTime;
+	const float destroyTime = 5;
 };

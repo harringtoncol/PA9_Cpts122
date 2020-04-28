@@ -23,15 +23,16 @@ public:
 	virtual void SetPosition(const sf::Vector2f &position);
 	virtual void SetRotation(const float angle);	
 	void Update(sf::RenderWindow& window);
-
+	bool enabled = false;
 protected:
 	float damage;
+	float angleOffset;
 	int ammo;
 	sf::Vector2f offsetPos;
 	sf::Texture texture;
 	sf::Sprite sprite;
 	bool canFire;
-
+	float fireSpeed;
 private:
 	sf::Clock clk;
 	void fireTimer();

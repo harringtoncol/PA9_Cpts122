@@ -9,6 +9,9 @@
 #include "Pistol.h"
 #include "Weapon.h"
 #include "Utilitys.h"
+#include "AK47.h"
+#include "Sniper.h"
+#include "map.h"
 
 
 class Player : public GameObject {
@@ -25,14 +28,20 @@ protected:
 	void walkingAnimation(float);
 	void rotateTo(float);
 	Weapon* currentWepon;
+
+	AK47* ak;
+	Sniper* sniper;
+	Pistol* pistol;
 public:
 	HotBar playerInventory;
 	Backpack playerBackpack;
+	Map* myMap;
 	Player(int renderLayer);
 	Player();
 	void Move(sf::Vector2f direction, double distance);
 	void Update(sf::RenderWindow& Window) override;
 	void takeDamage(float damage);
 	void attack();
+	void ChangeWeapon(int hotBarIndex);
 
 };

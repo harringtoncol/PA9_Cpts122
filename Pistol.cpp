@@ -17,6 +17,8 @@ void Pistol::initalization()
 	if (!texture.loadFromFile("Pistol.png"))
 		std::cout << "Failed to load Pistol Image" << std::endl;
 	sprite.setTexture(texture);
+	offsetPos = sf::Vector2f(35, 35);
+	fireSpeed = 400;
 }
 
 
