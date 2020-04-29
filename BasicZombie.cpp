@@ -1,7 +1,7 @@
 #include "BasicZombie.h"
 
 
-BasicZombie::BasicZombie(Player *p) : GameObject(){
+BasicZombie::BasicZombie(Player* p) : GameObject() {
 	pp = p;
 	name = "mob";
 	textureN.loadFromFile("ZombieTopN.png", sf::IntRect(0, 0, 200, 200));
@@ -41,69 +41,69 @@ void BasicZombie::move() {
 	printf("Zombie %lf  %lf\n\n\n", zombiePos.x, zombiePos.y);
 	sf::Vector2f playerPos = pp->position;
 	printf("Player %lf %lf\n\n\n\n", playerPos.x, playerPos.y);
-	
+
 	bool moved = false;
 	//If NE
 	if (playerPos.x > zombiePos.x && playerPos.y > zombiePos.y) {
-		
+
 		for (int i = 0; i < GameObjects.size(); i++) {
-			
-			std::cout << "Object" <<  GameObjects[i]->position.x<< "    " << GameObjects[i]->position.y << std::endl;
+
+			std::cout << "Object" << GameObjects[i]->position.x << "    " << GameObjects[i]->position.y << std::endl;
 			if (GameObjects[i]->name == "mob")
-			if (  (   ( (((zombiePos.x + speed / 2) < GameObjects[i]->position.x) && (zombiePos.x + speed / 2) > ((int)GameObjects[i]->position.x - 40)) && ((zombiePos.y + speed / 2) < GameObjects[i]->position.y) && (zombiePos.y + speed / 2) > ((int)GameObjects[i]->position.y - 40)) ) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y))) {
-				cont = false;
-			}
+				if ((((((zombiePos.x + speed / 2) < GameObjects[i]->position.x) && (zombiePos.x + speed / 2) > ((int)GameObjects[i]->position.x - 40)) && ((zombiePos.y + speed / 2) < GameObjects[i]->position.y) && (zombiePos.y + speed / 2) > ((int)GameObjects[i]->position.y - 40))) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y))) {
+					cont = false;
+				}
 		}
-			if (cont) {
-				zombieObj.setPosition(zombiePos.x + (speed / 2), zombiePos.y + (speed / 2));
-				moved = true;
-				zombieObj.setTexture(textureSE);
-				direction[0] = 0;
-				direction[1] = 0;
-				direction[2] = 0;
-				direction[3] = 1;
-				direction[4] = 0;
-				direction[5] = 0;
-				direction[6] = 0;
-				direction[7] = 0;
-				//zombieObj.setRotation(zombieObj.getRotation() + 180);
-			}
+		if (cont) {
+			zombieObj.setPosition(zombiePos.x + (speed / 2), zombiePos.y + (speed / 2));
+			moved = true;
+			zombieObj.setTexture(textureSE);
+			direction[0] = 0;
+			direction[1] = 0;
+			direction[2] = 0;
+			direction[3] = 1;
+			direction[4] = 0;
+			direction[5] = 0;
+			direction[6] = 0;
+			direction[7] = 0;
+			//zombieObj.setRotation(zombieObj.getRotation() + 180);
 		}
+	}
 	//If SE
 	else if (playerPos.x < zombiePos.x && playerPos.y > zombiePos.y) {
-		
+
 		for (int i = 0; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if (  (   ( (((zombiePos.x + speed / 2) < GameObjects[i]->position.x) && (zombiePos.x + speed / 2) > ((int)GameObjects[i]->position.x - 40)) && ((zombiePos.y + speed / 2) > GameObjects[i]->position.y) && (zombiePos.y + speed / 2) < ((int)GameObjects[i]->position.y - 40)) ) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y))) {
-			
-				cont = false;
-			}
+				if ((((((zombiePos.x + speed / 2) < GameObjects[i]->position.x) && (zombiePos.x + speed / 2) > ((int)GameObjects[i]->position.x - 40)) && ((zombiePos.y + speed / 2) > GameObjects[i]->position.y) && (zombiePos.y + speed / 2) < ((int)GameObjects[i]->position.y - 40))) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y))) {
+
+					cont = false;
+				}
 		}
-			if (cont) {
-				zombieObj.setPosition(zombiePos.x - (speed / 2), zombiePos.y + (speed / 2));
-				moved = true;
-				direction[0] = 0;
-				direction[1] = 0;
-				direction[2] = 0;
-				direction[3] = 0;
-				direction[4] = 0;
-				direction[5] = 0;
-				direction[6] = 0;
-				direction[7] = 1;
-				zombieObj.setTexture(textureSW);
-				
-			}
+		if (cont) {
+			zombieObj.setPosition(zombiePos.x - (speed / 2), zombiePos.y + (speed / 2));
+			moved = true;
+			direction[0] = 0;
+			direction[1] = 0;
+			direction[2] = 0;
+			direction[3] = 0;
+			direction[4] = 0;
+			direction[5] = 0;
+			direction[6] = 0;
+			direction[7] = 1;
+			zombieObj.setTexture(textureSW);
+
 		}
+	}
 	//If SW
 	else if (playerPos.x < zombiePos.x && playerPos.y < zombiePos.y) {
 		for (int i = 0; i < GameObjects.size(); i++) {
 			printf("%lf, %lf\n", GameObjects[i]->position.x, GameObjects[i]->position.y);
 			if (GameObjects[i]->name == "mob")
-			if ((((((zombiePos.x - speed / 2) > GameObjects[i]->position.x) && (zombiePos.x + speed / 2) < ((int)GameObjects[i]->position.x + 40)) && ((zombiePos.y - speed / 2) > GameObjects[i]->position.y) && (zombiePos.y + speed / 2) < ((int)GameObjects[i]->position.y + 40))) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y))) {
-			
-				cont = false;
-			}
-		}
+				if ((((((zombiePos.x - speed / 2) > GameObjects[i]->position.x) && (zombiePos.x + speed / 2) < ((int)GameObjects[i]->position.x + 40)) && ((zombiePos.y - speed / 2) > GameObjects[i]->position.y) && (zombiePos.y + speed / 2) < ((int)GameObjects[i]->position.y + 40))) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y))) {
+
+					cont = false;
+				}
+
 			if (cont) {
 				zombieObj.setPosition(zombiePos.x - (speed / 2), zombiePos.y - (speed / 2));
 				moved = true;
@@ -118,37 +118,38 @@ void BasicZombie::move() {
 				zombieObj.setTexture(textureNW);
 			}
 		}
-	//If NW
-	else if (playerPos.x > zombiePos.x && playerPos.y < zombiePos.y) {
-	
-	for (int i = 0; i < GameObjects.size(); i++) {
-		if (GameObjects[i]->name == "mob")
-		if ((((((zombiePos.x + speed / 2) < GameObjects[i]->position.x) && (zombiePos.x + speed / 2) > ((int)GameObjects[i]->position.x +40)) && ((zombiePos.y - speed / 2) < GameObjects[i]->position.y) && (zombiePos.y + speed / 2) > ((int)GameObjects[i]->position.y + 40))) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y))) {
-			cont = false;
-		}
 	}
-			if (cont) {
-				zombieObj.setPosition(zombiePos.x + (speed / 2), zombiePos.y - (speed / 2));
-				direction[0] = 0;
-				direction[1] = 1;
-				direction[2] = 0;
-				direction[3] = 0;
-				direction[4] = 0;
-				direction[5] = 0;
-				direction[6] = 0;
-				direction[7] = 0;
-				zombieObj.setTexture(textureNE);
-				moved = true;
-			}
-		}
-	cont = true;
-	//If E
-    if (playerPos.x+100 > zombiePos.x && !moved){
-		
+		//If NW
+	else if (playerPos.x > zombiePos.x && playerPos.y < zombiePos.y) {
+
 		for (int i = 0; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if ((((zombiePos.x + speed) < GameObjects[i]->position.x) && (zombiePos.x + speed) > ((int)GameObjects[i]->position.x + 100)) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
-				cont = false;
+				if ((((((zombiePos.x + speed / 2) < GameObjects[i]->position.x) && (zombiePos.x + speed / 2) > ((int)GameObjects[i]->position.x + 40)) && ((zombiePos.y - speed / 2) < GameObjects[i]->position.y) && (zombiePos.y + speed / 2) > ((int)GameObjects[i]->position.y + 40))) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y))) {
+					cont = false;
+				}
+		}
+		if (cont) {
+			zombieObj.setPosition(zombiePos.x + (speed / 2), zombiePos.y - (speed / 2));
+			direction[0] = 0;
+			direction[1] = 1;
+			direction[2] = 0;
+			direction[3] = 0;
+			direction[4] = 0;
+			direction[5] = 0;
+			direction[6] = 0;
+			direction[7] = 0;
+			zombieObj.setTexture(textureNE);
+			moved = true;
+		}
+	}
+	cont = true;
+	//If E
+	if (playerPos.x + 100 > zombiePos.x && !moved) {
+
+		for (int i = 0; i < GameObjects.size(); i++) {
+			if (GameObjects[i]->name == "mob")
+				if ((((zombiePos.x + speed) < GameObjects[i]->position.x) && (zombiePos.x + speed) > ((int)GameObjects[i]->position.x + 100)) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
+					cont = false;
 		}
 		if (cont) {
 			zombieObj.setPosition(zombiePos.x + speed, zombiePos.y);
@@ -165,11 +166,11 @@ void BasicZombie::move() {
 		}
 	}
 	//If W
-	 if (playerPos.x-100 < zombiePos.x && !moved) {
+	if (playerPos.x - 100 < zombiePos.x && !moved) {
 		for (int i = 0; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if ((((zombiePos.x - speed / 2) > GameObjects[i]->position.x) && (zombiePos.x + speed / 2) < ((int)GameObjects[i]->position.x + 100)) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
-				cont = false;
+				if ((((zombiePos.x - speed / 2) > GameObjects[i]->position.x) && (zombiePos.x + speed / 2) < ((int)GameObjects[i]->position.x + 100)) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
+					cont = false;
 		}
 		if (cont) {
 			zombieObj.setPosition(zombiePos.x - speed, zombiePos.y);
@@ -186,12 +187,12 @@ void BasicZombie::move() {
 		}
 	}
 	//If N
-	if (playerPos.y-100 < zombiePos.y && !moved) {
+	if (playerPos.y - 100 < zombiePos.y && !moved) {
 
 		for (int i = 0; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if (((((zombiePos.y - speed) < GameObjects[i]->position.y) && (zombiePos.y - speed) > ((int)GameObjects[i]->position.y + 100)) ) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
-				cont = false;
+				if (((((zombiePos.y - speed) < GameObjects[i]->position.y) && (zombiePos.y - speed) > ((int)GameObjects[i]->position.y + 100))) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
+					cont = false;
 		}
 		if (cont) {
 			zombieObj.setPosition(zombiePos.x, zombiePos.y - speed);
@@ -208,15 +209,15 @@ void BasicZombie::move() {
 		}
 	}
 	//If S
-	if (playerPos.y+100 > zombiePos.y && !moved) {
+	if (playerPos.y + 100 > zombiePos.y && !moved) {
 
 		for (int i = 2; i < GameObjects.size(); i++) {
 			if (GameObjects[i]->name == "mob")
-			if (((((zombiePos.y + speed) > GameObjects[i]->position.y) && (zombiePos.y + speed) < ((int)GameObjects[i]->position.y - 100)) ) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
-				cont = false;
+				if (((((zombiePos.y + speed) > GameObjects[i]->position.y) && (zombiePos.y + speed) < ((int)GameObjects[i]->position.y - 100))) && (!(zombiePos.x == GameObjects[i]->position.x && zombiePos.y == GameObjects[i]->position.y)))
+					cont = false;
 		}
 		if (cont) {
-			zombieObj.setPosition(zombiePos.x, zombiePos.y+ speed);
+			zombieObj.setPosition(zombiePos.x, zombiePos.y + speed);
 			moved = true;
 			zombieObj.setTexture(textureS);
 			direction[0] = 0;
@@ -231,8 +232,8 @@ void BasicZombie::move() {
 
 	}
 	position = zombieObj.getPosition();
-	
-}
+
+	}
 
 
 
@@ -246,7 +247,7 @@ void BasicZombie::takeDamage(double i) {
 				j = i;
 			}
 		}
-		for (; i < GameObjects.size()-1; j++) {
+		for (; i < GameObjects.size() - 1; j++) {
 			GameObjects[j] = GameObjects[j + 1];
 		}
 	}
