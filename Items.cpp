@@ -11,12 +11,25 @@ void Items::printItem(sf::RenderWindow& window, int posX, int posY, int item)
 	sf::Sprite icon;
 
 	switch (item) {
+	case _Pistol:
+		if (!texture.loadFromFile("Pistol.png")) return;
+		break;
+	case _PistolAmmo:
+		if (!texture.loadFromFile("PistolAmmo.png")) return;
+		break;
 	case _Ak47:
-		if (!texture.loadFromFile("Rifle.png")) return;
+		if (!texture.loadFromFile("Ak47.png")) return;
 		break;
 	case _Ak47Ammo:
-		if (!texture.loadFromFile("Ammo.png")) return;
+		if (!texture.loadFromFile("Ak47Ammo.png")) return;
 		break;
+	case _Sniper:
+		if (!texture.loadFromFile("Sniper.png")) return;
+		break;
+	case _SniperAmmo:
+		if (!texture.loadFromFile("SniperAmmo.png")) return;
+		break;
+
 	}
 	icon.setTexture(texture);
 	icon.setPosition(posX + 3, posY + 3);

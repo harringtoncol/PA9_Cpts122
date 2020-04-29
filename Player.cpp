@@ -71,6 +71,11 @@ void Player::Update(sf::RenderWindow& window)
 
 void Player::initialization()
 {
+	Backpack bp(10);
+	playerBackpack = bp;
+	HotBar hb(10);
+	playerInventory = hb;
+
 	myMap = nullptr;
 	textureIndex = 0;
 	animTime = 0;
