@@ -38,8 +38,16 @@ int main(int argc, char const* argv[]) {
          zombie6 = new BasicZombie(playerManager.currentPlayer);
 
 
-
-
+    sf::Texture main1, main2;
+    main1.loadFromFile("main1.png");
+    main2.loadFromFile("main2.png");
+    sf::Sprite main22;
+    main22.setTexture(main2);
+    main22.setPosition(0, 0);
+    sf::Sprite main;
+    main.setTexture(main1);
+    main.setPosition(0, 0);
+    int k = 0;
     //Game Loop
     while (window.isOpen() && playerManager.currentPlayer->alive()) {
         //Check if the window was closed
@@ -47,10 +55,26 @@ int main(int argc, char const* argv[]) {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) window.close();
         }
+      
+        if (k == 0) {
+
+           window.draw(main);
+            window.display();
+            for (int j = 0; j < 10000000; j++) {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+                    j = 10000001;
+            }
+            
+            window.clear(sf::Color::Green);
+        
+            k++;
+      }
+
+            
 
         //Render
         window.clear(sf::Color::Green);
-      
+       
             for (int i = 0; i < GameObject::GameObjects.size(); i++)
             {
 

@@ -31,16 +31,16 @@ void Player::Update(sf::RenderWindow& window)
 	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
 	//Input detection
-	if (!myMap->checkCollisionLeft(PlayerPos))
+	//if (!myMap->checkCollisionLeft(PlayerPos))
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			Move(sf::Vector2f(-1, 0), Utility::deltaTime() * SPEED);
-	if (!myMap->checkCollisionRight(PlayerPos))
+	//if (!myMap->checkCollisionRight(PlayerPos))
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			Move(sf::Vector2f(1, 0), Utility::deltaTime() * SPEED);
-	if (!myMap->checkCollisionUp(PlayerPos))
+	//if (!myMap->checkCollisionUp(PlayerPos))
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			Move(sf::Vector2f(0, -1), Utility::deltaTime() * SPEED);
-	if (!myMap->checkCollisionDown(PlayerPos))
+	//dddif (!myMap->checkCollisionDown(PlayerPos))
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			Move(sf::Vector2f(0, 1), Utility::deltaTime() * SPEED);
 
@@ -71,10 +71,10 @@ void Player::Update(sf::RenderWindow& window)
 
 void Player::initialization()
 {
-	Backpack bp(10);
-	playerBackpack = bp;
-	HotBar hb(10);
-	playerInventory = hb;
+	//Backpack bp(10);
+	//playerBackpack = bp;
+	//HotBar hb(10);
+	//playerInventory = hb;
 
 	myMap = nullptr;
 	textureIndex = 0;
@@ -84,9 +84,9 @@ void Player::initialization()
 	ak = new AK47(1);
 	sniper = new Sniper(1);
 
-	playerInventory.add(0, 1);
-	playerInventory.add(1, 3);
-	playerInventory.add(2, 5);
+	//playerInventory.add(0, 1);
+	//playerInventory.add(1, 3);
+	//playerInventory.add(2, 5);
 
 	currentWepon = nullptr;
 
