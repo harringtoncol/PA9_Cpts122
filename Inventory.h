@@ -3,6 +3,7 @@
 
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "GameObject.h"
 #include<vector>
 #include "Items.h"
 

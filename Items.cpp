@@ -11,10 +11,10 @@ void Items::printItem(sf::RenderWindow& window, int posX, int posY, int item)
 	sf::Sprite icon;
 
 	switch (item) {
-	case RIFLE:
+	case _Ak47:
 		if (!texture.loadFromFile("Rifle.png")) return;
 		break;
-	case AMMO:
+	case _Ak47Ammo:
 		if (!texture.loadFromFile("Ammo.png")) return;
 		break;
 	}
