@@ -3,10 +3,6 @@
 
 
 
-Chest::Chest() {
-	return;
-}
-
 void Chest::Update(sf::RenderWindow& window)
 {
 	sf::RectangleShape inventoryBackground(sf::Vector2f(75, 50));

@@ -3,7 +3,9 @@
 class HotBar : public Inventory
 {
 public:
-	HotBar(int arrSize = 0);
+	HotBar(int arrSize = 0) : Inventory(arrSize) {
+		return;
+	}
 	HotBar(int arrSize, int renderLayer) : Inventory(arrSize, renderLayer) {
 		return;
 	}

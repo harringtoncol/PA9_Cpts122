@@ -39,7 +39,7 @@ public:
 	Map* myMap;
 	Player(int renderLayer);
 	Player();
-        bool alive();
+    bool alive();
 	void Move(sf::Vector2f direction, double distance);
 	void Update(sf::RenderWindow& Window) override;
 	void takeDamage(float damage);

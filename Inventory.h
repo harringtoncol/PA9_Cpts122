@@ -20,10 +20,8 @@ public:
 	void printCells(sf::RenderWindow& window, int posX, int posY, int rows, int cols);
 	void printOneCell(sf::RenderWindow& window, int lastPosX, int lastPosY, int count);
 	bool add(int idx, int val);
-	int remove(int idx, bool& success);
-	int peek(int idx, bool& success);
-	int remove(int idx); //overload without success flag return
-	int peek(int idx); //overload without success flag return
+	int remove(int idx);
+	int peek(int idx);
 	bool isEmpty();
 	bool isEmptyIdx(int idx);
 	bool isFull();

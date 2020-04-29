@@ -12,19 +12,19 @@ void Items::printItem(sf::RenderWindow& window, int posX, int posY, int item)
 
 	switch (item) {
 	case _Pistol:
-		if (!texture.loadFromFile("Pistol.png")) return;
+		if (!texture.loadFromFile("iconPistol.png")) return;
 		break;
 	case _PistolAmmo:
 		if (!texture.loadFromFile("PistolAmmo.png")) return;
 		break;
 	case _Ak47:
-		if (!texture.loadFromFile("Ak47.png")) return;
+		if (!texture.loadFromFile("iconAk47.png")) return;
 		break;
 	case _Ak47Ammo:
 		if (!texture.loadFromFile("Ak47Ammo.png")) return;
 		break;
 	case _Sniper:
-		if (!texture.loadFromFile("Sniper.png")) return;
+		if (!texture.loadFromFile("iconSniper.png")) return;
 		break;
 	case _SniperAmmo:
 		if (!texture.loadFromFile("SniperAmmo.png")) return;
@@ -33,6 +33,6 @@ void Items::printItem(sf::RenderWindow& window, int posX, int posY, int item)
 	}
 	icon.setTexture(texture);
 	icon.setPosition(posX + 3, posY + 3);
-	icon.scale(sf::Vector2f(.03f, .03f));
+	icon.scale(sf::Vector2f(.2f, .2f));
 	window.draw(icon);
 }

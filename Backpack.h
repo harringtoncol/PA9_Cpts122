@@ -6,7 +6,9 @@ private:
 	bool isOpen;
 	bool isBackpackToHotBar;
 public:
-	Backpack(int arrSize = 0);
+	Backpack(int arrSize = 0) : Inventory(arrSize) {
+		return;
+	}
 	Backpack(int arrSize, int renderLayer) :Inventory(arrSize, renderLayer) {
 		return;
 	}

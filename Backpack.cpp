@@ -1,12 +1,5 @@
 #include "Backpack.h"
 
-Backpack::Backpack(int arrSize)
-{
-	arr = new int[arrSize];
-	length = arrSize;
-	clear(); //Zeros out the arrIsEmpty
-}
-
 void Backpack::Update(sf::RenderWindow& window)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {

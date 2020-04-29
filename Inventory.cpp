@@ -65,29 +65,18 @@ bool Inventory::add(int idx, int val) { //Adds an item, if the array isnt full
 	return true;
 }
 
-int Inventory::remove(int idx, bool& success) { //Removes an item, if there is an item to remove
-	success = (idx >= 0 && idx < count()); //return true (success) if not empty and index is in range
+int Inventory::remove(int idx) { //Removes an item, if there is an item to remove
 	int retValue = 0;
 
-	if (success) {
+	if (idx >= 0 && idx < count()) {
 		retValue = arr[idx];
 		itemsInArr--;
 	}
 	return retValue; //Returns value that was removed
 }
 
-int Inventory::peek(int idx, bool& success) {
-	return (arr[idx]); //Returns true if the retValue is valid
-}
-
-int Inventory::remove(int idx) {
-	bool success;
-	return remove(idx, success);
-}
-
 int Inventory::peek(int idx) {
-	bool success;
-	return peek(idx, success);
+	return (arr[idx]); //Returns true if the retValue is valid
 }
 
 bool Inventory::isEmpty() {
