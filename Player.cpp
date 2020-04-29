@@ -62,6 +62,9 @@ void Player::Update(sf::RenderWindow& window)
 	window.draw(playerSprite);
 	clock.restart();
 	lastPosition = PlayerPos;
+	position = PlayerPos;
+
+	std::cout << "Player Health: " << health << endl;
 }
 
 
@@ -122,7 +125,7 @@ void Player::rotateTo(float angle)
 
 void Player::takeDamage(float damage)
 {
-
+	health = health - damage;
 
 }
 
@@ -130,6 +133,13 @@ void Player::attack()
 {
 	currentWepon->attack();
 }
+
+bool Player::alive() {
+	if (health <= 0)
+		return false;
+	return true;
+}
+
 
 void Player::ChangeWeapon(int hotBarIndex)
 {

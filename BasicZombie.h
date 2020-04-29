@@ -2,11 +2,13 @@
 #include <iostream>
 #include <fstream>
 #include "GameObject.h"
+#include "Player.h"
 
 class BasicZombie : public GameObject {
 private:
+	Player* pp;
 	double speed = 10;
-	double damage = 20;
+	double damage = 10;
 	double health = 100;
 	sf::Sprite zombieObj;
 	sf::Vector2f lastPostition;
@@ -19,16 +21,17 @@ private:
 	sf::Texture textureNW;
 	sf::Texture textureE;
 	sf::Texture* texture;
+	sf::Texture textureAttack;
 	int direction[8]; //N, NE, E, SE , S, NW,W, SW
 	int index;
 public:
-	BasicZombie();
+	BasicZombie(Player* p);
 	~BasicZombie();
 	void move();
 	void Update(sf::RenderWindow& Window) override;
 	void takeDamage(double);
 	int dealDamage();
-	
+	void tryAttack();
 
 
 
