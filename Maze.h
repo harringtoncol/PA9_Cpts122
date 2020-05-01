@@ -30,7 +30,6 @@ public:
 	void setMazeFromIntArray(int* arry);
 	void generateMaze();
 
-	void printMazeAsArray(int **arry);
 	void printMazeConsole();
 	void printMazeSFML(sf::RenderWindow& window);
 	void drawCell(Cell cell, sf::RenderWindow& window);
