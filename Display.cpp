@@ -34,7 +34,7 @@ void displayMenu(Menu menu, sf::RenderWindow& window, sf::Clock clock, sf::Time 
 void displayTimer(sf::RenderWindow& window, sf::Clock clock, sf::Time elapsed, int posX, int posY)
 {
     //Creates the background of the timer
-    sf::RectangleShape clockBackground(sf::Vector2f(100, 40));
+    sf::RectangleShape clockBackground(sf::Vector2f(50, 20));
     clockBackground.setFillColor(sf::Color::Red);
     clockBackground.setPosition(posX, posY);
     window.draw(clockBackground);
@@ -44,16 +44,16 @@ void displayTimer(sf::RenderWindow& window, sf::Clock clock, sf::Time elapsed, i
     elapsed = clock.getElapsedTime();
     ss << elapsed.asSeconds();
     std::string timer(ss.str());
-    timer = timer.substr(0, 6);
+    timer = timer.substr(0, 5);
 
     sf::Font font;
-    if (!font.loadFromFile("arial.ttf"));
+    if (!font.loadFromFile("arial.ttf")) return; //Error
 
     //Prints time
     sf::Text text;
     text.setFont(font);
     text.setString(timer + "s");
-    text.setCharacterSize(25);
+    text.setCharacterSize(15);
     text.setFillColor(sf::Color::White);
     text.setStyle(sf::Text::Bold);
     text.setPosition(sf::Vector2f(posX, posY));
@@ -69,14 +69,14 @@ void displayWinner(sf::RenderWindow& window, int gameTime, bool isWinner, int po
     sf::Sprite winnerBackground;
     winnerBackground.setTexture(winnerTexture);
     winnerBackground.setPosition(posX, posY);
-    winnerBackground.setScale(2.f, 2.f);
+    winnerBackground.setScale(1.5f, 1.5f);
     window.draw(winnerBackground);
 
-    posX += 25;
-    posY += 200;
+    posX += 20;
+    posY += 150;
 
     sf::Font font;
-    if (!font.loadFromFile("arial.ttf"));
+    if (!font.loadFromFile("arial.ttf")) return; //Error
     
     //Prints winner status
     sf::Text pStatus;
@@ -87,7 +87,7 @@ void displayWinner(sf::RenderWindow& window, int gameTime, bool isWinner, int po
     else {
         pStatus.setString("Loser...");
     }
-    pStatus.setCharacterSize(100);
+    pStatus.setCharacterSize(80);
     pStatus.setFillColor(sf::Color::Red);
     pStatus.setStyle(sf::Text::Bold);
     pStatus.setPosition(sf::Vector2f(posX, posY));
@@ -95,14 +95,14 @@ void displayWinner(sf::RenderWindow& window, int gameTime, bool isWinner, int po
 
     std::string gTime = std::to_string(gameTime);
 
-    posX += 125;
-    posY += 250;
+    posX += 80;
+    posY += 200;
 
     //Prints the length of the game
     sf::Text text;
     text.setFont(font);
     text.setString(gTime + " seconds");
-    text.setCharacterSize(50);
+    text.setCharacterSize(40);
     text.setFillColor(sf::Color::Red);
     text.setStyle(sf::Text::Bold);
     text.setPosition(sf::Vector2f(posX, posY));
