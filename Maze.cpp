@@ -97,6 +97,8 @@ void Maze::singleStep()
 	}
 	else
 	{
+		//end
+		end = current;
 		return;
 	}
 
@@ -113,7 +115,12 @@ void Maze::generateMaze()
 			getCell(x, y)->position.y = y;
 		}
 	}
-	current = &maze[rand() % MAZE_SIZE * MAZE_SIZE - 1];
+
+	current = getCell(20,20);
+
+	//start
+
+	start = current;
 
 	singleStep();
 
@@ -136,16 +143,48 @@ Maze::~Maze()
 	if (map != nullptr) delete map;
 }
 
-int* Maze::copyMazeToIntArray()
-{
-	int* map = new int[MAZE_SIZE * MAZE_SIZE * 4];
 
-	for (int i = 0; i < MAZE_SIZE * MAZE_SIZE * 4; i++)
+int** Maze::copyMazeToIntArray()
+{
+	int** map = 0;
+	map = new int* [MAZE_SIZE * 3];
+	for (int y = 0; y < MAZE_SIZE * 3; y++)
 	{
-		Cell* cell = maze + i/4;
-		map[i] = cell->walls[i%4];
+		map[y] = new int[MAZE_SIZE * 3];
+		for (int x = 0; x < MAZE_SIZE * 3; x++)
+		{
+			map[y][x] = 1;
+		}
 	}
 
+
+
+	for (int y = 0; y < MAZE_SIZE; y++)
+	{
+		for (int x = 0; x < MAZE_SIZE; x++)
+		{
+			Cell cell = *getCell(x, y);
+			int cellVertical = y * 3;
+			int cellHorizontal = x * 3;
+			map[cellVertical + 1][cellHorizontal + 1] = 0;
+			if (!cell.walls[0])
+			{
+				map[cellVertical][cellHorizontal + 1] = 0;
+			}
+			if (!cell.walls[1])
+			{
+				map[cellVertical + 1][cellHorizontal + 2] = 0;
+			}
+			if (!cell.walls[2])
+			{
+				map[cellVertical + 2][cellHorizontal + 1] = 0;
+			}
+			if (!cell.walls[3])
+			{
+				map[cellVertical + 1][cellHorizontal] = 0;
+			}
+		}
+	}
 	return map;
 }
 
@@ -153,27 +192,15 @@ void Maze::setMazeFromIntArray(int* arry)
 {
 	//gen maze
 
-	for (int i = 0; i < MAZE_SIZE * MAZE_SIZE; i++)
+	/*for (int i = 0; i < MAZE_SIZE * MAZE_SIZE; i++)
 	{
 		int index = i / 4;
 		Cell* ptr = getCell(index % MAZE_SIZE, index / MAZE_SIZE);
 		ptr->walls[i % 4] = arry[i];
-	}
+	}*/
 
 }
 
-
-void Maze::printMazeAs1DArray(int *arry)
-{
-	for (int i = 0; i < MAZE_SIZE * MAZE_SIZE; i++)
-	{
-		std::cout << "[" << arry[i] << ",";
-		std::cout << arry[i + 1] << ",";
-		std::cout << arry[i + 2] << ",";
-		std::cout << arry[i + 3] << "]";
-		if (i % MAZE_SIZE == 0) std::cout << std::endl;
-	}
-}
 
 void Maze::printMazeConsole()
 {
@@ -193,7 +220,7 @@ void Maze::printMazeConsole()
 
 void Maze::printMazeSFML(sf::RenderWindow& window)
 {
-	//drawCell(*getCell(0, 0), window);
+	drawCell(*start,window);
 
 	for (int y = 0; y < MAZE_SIZE; y++)
 	{

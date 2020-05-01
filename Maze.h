@@ -5,7 +5,7 @@
 #include <stack>
 #include <list>
 
-#define MAZE_SIZE 14
+#define MAZE_SIZE 13
 #define CELL_SIZE 60
 
 class Maze {
@@ -18,18 +18,18 @@ private:
 	Cell maze[MAZE_SIZE * MAZE_SIZE];
 	Cell* getCell(int x, int y);
 	Cell* current;
-
+	Cell* start;
+	Cell* end;
 	void removeWall(Cell* current, Cell* next);
 	void singleStep();
 
 public:
 	Maze();
 	~Maze();
-	int* copyMazeToIntArray();
+	int** copyMazeToIntArray();
 	void setMazeFromIntArray(int* arry);
 	void generateMaze();
 
-	void printMazeAs1DArray(int *arry);
 	void printMazeConsole();
 	void printMazeSFML(sf::RenderWindow& window);
 	void drawCell(Cell cell, sf::RenderWindow& window);
