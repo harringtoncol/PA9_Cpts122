@@ -1,7 +1,7 @@
 #pragma once
 #include "Display.h"
 
-
+//Prints the Menu
 void displayMenu(Menu menu, sf::RenderWindow& window, sf::Clock clock, sf::Time elapsed)
 {
     bool isMenuOpen = true;
@@ -10,15 +10,14 @@ void displayMenu(Menu menu, sf::RenderWindow& window, sf::Clock clock, sf::Time 
     while (isMenuOpen) {
         int opt = menu.checkInput();
         if (opt > 0 && opt < 4) {
-            if (opt == 1) {
-                //elapsed = clock.restart();
+            if (opt == 1) { //Play Game
                 break;
             }
-            else if (opt == 2) {
+            else if (opt == 2) { //Prints the rules
                 menu.printInstructions(window);
                 window.display();
                 bool isRulesOpen = true;
-                while (isRulesOpen) {
+                while (isRulesOpen) { //Waits until player presses space to go back to the main page
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
                         isRulesOpen = false;
                     }
@@ -26,13 +25,15 @@ void displayMenu(Menu menu, sf::RenderWindow& window, sf::Clock clock, sf::Time 
                 menu.printMenu(window);
                 window.display();
             }
-            else if (opt == 3) window.close();
+            else if (opt == 3) window.close(); //Exits the game
         }
     }
 }
 
+//Prints a timer in seconds
 void displayTimer(sf::RenderWindow& window, sf::Clock clock, sf::Time elapsed, int posX, int posY)
 {
+    //Creates the background of the timer
     sf::RectangleShape clockBackground(sf::Vector2f(100, 40));
     clockBackground.setFillColor(sf::Color::Red);
     clockBackground.setPosition(posX, posY);
@@ -48,6 +49,7 @@ void displayTimer(sf::RenderWindow& window, sf::Clock clock, sf::Time elapsed, i
     sf::Font font;
     if (!font.loadFromFile("arial.ttf"));
 
+    //Prints time
     sf::Text text;
     text.setFont(font);
     text.setString(timer + "s");
@@ -58,8 +60,10 @@ void displayTimer(sf::RenderWindow& window, sf::Clock clock, sf::Time elapsed, i
     window.draw(text);
 }
 
+//Prints the length of the game and displays if the player won or lost
 void displayWinner(sf::RenderWindow& window, int gameTime, bool isWinner, int posX, int posY)
 {
+    //Prints the background for the winner display
     sf::Texture winnerTexture;
     winnerTexture.loadFromFile("WinnerBackground.png");
     sf::Sprite winnerBackground;
@@ -74,13 +78,14 @@ void displayWinner(sf::RenderWindow& window, int gameTime, bool isWinner, int po
     sf::Font font;
     if (!font.loadFromFile("arial.ttf"));
     
+    //Prints winner status
     sf::Text pStatus;
     pStatus.setFont(font);
     if (isWinner) {
         pStatus.setString("WINNER!!!");
     }
     else {
-        pStatus.setString("    Loser");
+        pStatus.setString("Loser...");
     }
     pStatus.setCharacterSize(100);
     pStatus.setFillColor(sf::Color::Red);
@@ -93,6 +98,7 @@ void displayWinner(sf::RenderWindow& window, int gameTime, bool isWinner, int po
     posX += 125;
     posY += 250;
 
+    //Prints the length of the game
     sf::Text text;
     text.setFont(font);
     text.setString(gTime + " seconds");

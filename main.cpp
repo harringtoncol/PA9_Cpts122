@@ -1,58 +1,79 @@
-#pragma once
-#include<SFML/Graphics.hpp>
-#include <string>
-#include <stdio.h>
-#include <iostream>
-#include <sstream>
-#include <time.h>
+#include "map.h"
 #include "Display.h"
 
-using namespace std;
+int main(int argc, char const* argv[])
+{
+  srand(time(NULL));
 
+  //prints out the local and public ip addresses of the server.
+  //Currently only works on lan
+  std::cout << sf::IpAddress::getLocalAddress() << std::endl;
+  //std::cout << sf::IpAddress::getPublicAddress() << std::endl;
 
-int main(int argc, char const* argv[]) {
-    //Create Window
-    srand(time(NULL));
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Dungeon crawler C++");
-    window.setFramerateLimit(30);    
-    
-    Menu menu; 
-    sf::Clock clock; 
-    sf::Time elapsed;
+  //default port is 52000, first command line argument is the modified port number
+  //is fine without arguments most of the time
+  int port = 52000;
+  sf::TcpListener listener;
+  if (argc > 1)
+    port = atoi(argv[1]);
+  // bind the listener to a port
+  if (listener.listen(port) != sf::Socket::Done)
+  {
+    // error...
+  }
 
-    int k = 0;
-    //Game Loop
-    while (window.isOpen()) {
-        //Check if the window was closed
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) window.close();
-        }
-      
-        if (k == 0) {
-            
-            displayMenu(menu, window, clock, elapsed);
-            window.clear(sf::Color::Green);
+  //connects to 2 clients
+  // accept a new connection
+  sf::TcpSocket client1;
+  if (listener.accept(client1) != sf::Socket::Done)
+  {
+    // error...
+  }
+  std::cout << "Client 1 connected" << std::endl;
+  // accept a new connection
+  sf::TcpSocket client2;
+  if (listener.accept(client2) != sf::Socket::Done)
+  {
+    // error...
+  }
+  std::cout << "Client 2 connected" << std::endl;
 
-            k++;    
-      }
+  //char arrays for sending and receiving data
+  char dataIn[100];
+  char dataOut[3000];
+  //for some reason packets don't send properly without \n at the end
+  dataOut[2999] = '\n';
 
-            
+  std::size_t received;
+  
+  //creates a map with players 1 and 2 using clients 1 and 2
+  Map map(&client1, &client2);
 
-        //Render
-        window.clear(sf::Color::Green);
-       
-        if (k == 1) {
-            elapsed = clock.restart();
-            k++;
-        }
-        displayTimer(window, clock, elapsed, 500,500);
+  //determines if a close signal is sent from a client
+  int close;
+  //Game Loop
+  do
+  {
+    // updates positions from clients and determines if either client closed
+    close = map.update();
 
+    //packages the map into a char array
+    map.sendMap(dataOut);
 
-        window.display();
+    //sends a close signal to both clients if necessary
+    dataOut[1700] = close;
+
+    //sends info back to client
+    if (client1.send(dataOut, 3000) != sf::Socket::Done)
+    {
+      // error...
     }
-
-
-    std::cout << "can we write things here?" << endl;
-    return 0;
+    //sends info back to client
+    if (client2.send(dataOut, 3000) != sf::Socket::Done)
+    {
+      // error...
+    }
+  }
+  while (!close);
+  return 0;
 }

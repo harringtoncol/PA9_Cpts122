@@ -1,5 +1,6 @@
 #include "Maze.h"
-#include <SFML\System\Sleep.hpp>
+#include <SFML/System/Sleep.hpp>
+//Checks where another cell is
 Cell* Maze::checkNeighbors(sf::Vector2i position)
 {
 	std::list<Cell*>  neighbors;
@@ -42,12 +43,12 @@ Cell* Maze::checkNeighbors(sf::Vector2i position)
 	}
 
 }
-
+//Gets a cell
 Cell* Maze::getCell(int x, int y)
 {
 	return maze + (int)(y * (int)MAZE_SIZE) + x;
 }
-
+//Removes a wall if there is no path
 void Maze::removeWall(Cell* current, Cell* next)
 {
 	int deltaX = current->position.x - next->position.x;
@@ -73,7 +74,7 @@ void Maze::removeWall(Cell* current, Cell* next)
 	}
 
 }
-
+//Single step
 void Maze::singleStep()
 {
 	current->visited = true;
@@ -104,7 +105,7 @@ void Maze::singleStep()
 
 	singleStep();
 }
-
+//Generated the map
 void Maze::generateMaze()
 {
 	for (int y = 0; y < MAZE_SIZE; y++)
@@ -128,8 +129,6 @@ void Maze::generateMaze()
 	std::cout << "Maze built.";
 }
 
-
-
 Maze::Maze()
 {
 	if (!texture.loadFromFile("Wall.png"))
@@ -142,8 +141,7 @@ Maze::~Maze()
 {
 	if (map != nullptr) delete map;
 }
-
-
+//Copies the maze into an integer array
 int** Maze::copyMazeToIntArray()
 {
 	int** map = 0;
@@ -200,8 +198,7 @@ void Maze::setMazeFromIntArray(int* arry)
 	}*/
 
 }
-
-
+//Prints Maze to Console
 void Maze::printMazeConsole()
 {
 	for (int y = 0; y < MAZE_SIZE; y++)
@@ -217,7 +214,7 @@ void Maze::printMazeConsole()
 	}
 
 }
-
+//Prints Maze to SFML
 void Maze::printMazeSFML(sf::RenderWindow& window)
 {
 	drawCell(*start,window);
@@ -230,7 +227,7 @@ void Maze::printMazeSFML(sf::RenderWindow& window)
 		}
 	}
 }
-
+//Draws the cell
 void Maze::drawCell(Cell cell, sf::RenderWindow& window)
 {
 	int wallSize = (CELL_SIZE / 3);
@@ -271,7 +268,7 @@ void Maze::drawCell(Cell cell, sf::RenderWindow& window)
 		window.draw(sprite);
 	}
 }
-
+//Updates the world by printing the map
 void Maze::Update(sf::RenderWindow& window)
 {
 	printMazeSFML(window);

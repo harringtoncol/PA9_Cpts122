@@ -1,0 +1,1 @@
+I'm giving up for tonight, I commented client.cpp and main.cpp and added some failsafe if the client is closed, but I didn't add the menu/timer.
