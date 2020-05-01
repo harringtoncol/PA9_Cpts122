@@ -17,12 +17,11 @@ void Menu::printMenu(sf::RenderWindow &window)
 
     sf::Text text;
     text.setFont(font);
-    text.setString("Welcome to ???\n");
-    text.setCharacterSize(100);
+    text.setString("Welcome to Scary Maze \n\t\t\t(BOO!)\n\n");
+    text.setCharacterSize(80);
     text.setFillColor(sf::Color::White);
     text.setStyle(sf::Text::Bold);
-    text.setStyle(sf::Text::Underlined);
-    text.setPosition(sf::Vector2f(100, 50));
+    text.setPosition(sf::Vector2f(80, 50));
     window.draw(text);
 
     printOptions(window);
@@ -33,9 +32,9 @@ void Menu::printOptions(sf::RenderWindow& window)
     sf::Text text;
     text.setFont(font);
     text.setString("1) Play Game\n2) How To Play\n3) Exit\n");
-    text.setCharacterSize(80);
+    text.setCharacterSize(60);
     text.setFillColor(sf::Color::White);
-    text.setPosition(sf::Vector2f(100, 300));
+    text.setPosition(sf::Vector2f(100, 400));
     window.draw(text);
 }
 
