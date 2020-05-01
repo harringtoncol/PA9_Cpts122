@@ -1,3 +1,13 @@
+/*
+Cole Harrington
+Lance Stupfel
+Ryan McKee
+Shira Feinberg
+PA-9 Scary Maze Game
+Cpts 122
+5/1/2020
+*/
+
 #include "map.h"
 #include "Display.h"
 
