@@ -80,7 +80,7 @@ void displayWinner(sf::RenderWindow& window, int gameTime, bool isWinner, int po
         pStatus.setString("WINNER!!!");
     }
     else {
-        pStatus.setString("Loser...");
+        pStatus.setString("    Loser");
     }
     pStatus.setCharacterSize(100);
     pStatus.setFillColor(sf::Color::Red);
