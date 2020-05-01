@@ -7,7 +7,13 @@ Menu::Menu() {
 
 void Menu::printMenu(sf::RenderWindow &window)
 {
-    window.clear(sf::Color::Blue);
+    //window.clear(sf::Color::Blue);
+    sf::Texture menuTexture;
+    menuTexture.loadFromFile("MenuBackground.png");
+    sf::Sprite menuBackground;
+    menuBackground.setTexture(menuTexture);
+    menuBackground.setScale(2.f, 2.f);
+    window.draw(menuBackground);
 
     sf::Text text;
     text.setFont(font);
@@ -34,10 +40,10 @@ void Menu::printOptions(sf::RenderWindow& window)
 }
 
 void Menu::printInstructions(sf::RenderWindow& window) {
-        window.clear(sf::Color::Cyan);
+        window.clear(sf::Color::Blue);
 
         text.setFont(font);
-        text.setString("Objective: Find and hit \n\tthe target in the maze.\n\nRules:\n1) Locate the target\n2) Get to the target, \n\tbut beware of the ghosts\n3) Hit the target\n\n\nTo go back, press Space");
+        text.setString("Objective: Survive the longest\n\nRules:\n1) Run from the ghosts\n2) Stay alive\n\n\n\n\n\n\n\n\n\nTo go back, press Space");
         text.setCharacterSize(50);
         text.setFillColor(sf::Color::Black);
         text.setStyle(sf::Text::Bold);

@@ -5,7 +5,7 @@
 #include <stack>
 #include <list>
 
-#define MAZE_SIZE 3
+#define MAZE_SIZE 14
 #define CELL_SIZE 60
 
 class Maze {
@@ -25,11 +25,11 @@ private:
 public:
 	Maze();
 	~Maze();
-	int** copyMazeToIntArray();
+	int* copyMazeToIntArray();
 	void setMazeFromIntArray(int* arry);
 	void generateMaze();
 
-	void printMazeAsArray(int **arry);
+	void printMazeAs1DArray(int *arry);
 	void printMazeConsole();
 	void printMazeSFML(sf::RenderWindow& window);
 	void drawCell(Cell cell, sf::RenderWindow& window);

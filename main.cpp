@@ -3,12 +3,11 @@
 #include <string>
 #include <stdio.h>
 #include <iostream>
+#include <sstream>
 #include <time.h>
-#include "Menu.h"
+#include "Display.h"
 
 using namespace std;
-
-void displayMenu(Menu menu, sf::RenderWindow& window);
 
 
 int main(int argc, char const* argv[]) {
@@ -18,6 +17,8 @@ int main(int argc, char const* argv[]) {
     window.setFramerateLimit(30);    
     
     Menu menu; 
+    sf::Clock clock; 
+    sf::Time elapsed;
 
     int k = 0;
     //Game Loop
@@ -30,11 +31,10 @@ int main(int argc, char const* argv[]) {
       
         if (k == 0) {
             
-            displayMenu(menu, window);
-
+            displayMenu(menu, window, clock, elapsed);
             window.clear(sf::Color::Green);
-        
-            k++;
+
+            k++;    
       }
 
             
@@ -42,37 +42,17 @@ int main(int argc, char const* argv[]) {
         //Render
         window.clear(sf::Color::Green);
        
-      //  map.displayMap(window);
+        if (k == 1) {
+            elapsed = clock.restart();
+            k++;
+        }
+        displayTimer(window, clock, elapsed, 500,500);
+
+
         window.display();
     }
 
 
     std::cout << "can we write things here?" << endl;
     return 0;
-}
-
-void displayMenu(Menu menu, sf::RenderWindow &window)
-{
-    bool isMenuOpen = true;
-    menu.printMenu(window);
-    window.display();
-    while (isMenuOpen) {
-        int opt = menu.checkInput();
-        if (opt > 0 && opt < 4) {
-            if (opt == 1) break;
-            else if (opt == 2) {
-                menu.printInstructions(window);
-                window.display();
-                bool isRulesOpen = true;
-                while (isRulesOpen) {
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                        isRulesOpen = false;
-                    }
-                }
-                menu.printMenu(window);
-                window.display();
-            }
-            else if (opt == 3) window.close();
-        }
-    }
 }
