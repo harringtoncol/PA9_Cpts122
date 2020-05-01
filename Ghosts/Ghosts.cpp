@@ -1,5 +1,5 @@
 #include "Ghosts.h"
-
+//This is the constructor initializes ghostObjs origin and position as well as the clock.
 Ghosts::Ghosts() : GameObject(sf::Vector2f(0,0)){
 
 	ghostObj.setOrigin(10, 10);
@@ -7,6 +7,9 @@ Ghosts::Ghosts() : GameObject(sf::Vector2f(0,0)){
 	clk.restart();
 }
 
+//This is the update function, we take in two players positions and set them to a private variable in the class
+//Then we increment the speed based on the amount of time in seconds thats passed (this way the ghost moves faster as the game continues)
+//after speed is updated calls move which updates the ghost position, then calls hit player.
 int Ghosts::update(sf::Vector2f p1, sf::Vector2f p2) {
 	p1Pos = p1;
 	p2Pos = p2;
@@ -17,8 +20,11 @@ int Ghosts::update(sf::Vector2f p1, sf::Vector2f p2) {
 return	hitPlayer();
 }
 
+//move uses pythagorean theorem to decide which player is closer to the ghost
+//then checks whihc direction the ghost moves and hten moves the ghost
 void Ghosts::move() {
 
+	//This is pythagorean to  find the closest player
 	float i = ghostPos.y - p1Pos.y;
 	float y = ghostPos.x - p1Pos.x;
 	float z = sqrt(i * i + y * y);
@@ -33,8 +39,8 @@ void Ghosts::move() {
 		playerPos = p1Pos;
 
 
-	bool moved = false;
-	
+	bool moved = false; //so that if it moves diagonal direction does also move in a straight driection.
+	//NE	
 	if (playerPos.x > ghostPos.x && playerPos.y > ghostPos.y) {
 
 		
@@ -108,19 +114,22 @@ void Ghosts::move() {
 
 
 	}
-	ghostPos = ghostObj.getPosition();
+	ghostPos = ghostObj.getPosition();  //updates updates the classes private variable of ghost postition
 	//std::cout << " Position is:  " << ghostPos.x << "  " << ghostPos.y << std::endl;
-	pos = ghostObj.getPosition();
+	pos = ghostObj.getPosition(); //updates teh game objects variable of the ghost possition
 
 
 
 }
 
 
+//This function tests if the ghost and the player overlap.
+//if the first player and ghost match then returns a one if second player and ghost match returns a 2
+//if neither of them will return a 0;
 int Ghosts::hitPlayer() {
-//first checking the first player
-	//if (ghostObj.getPosition().x + 10 > p1Pos.x && ghostObj.getPosition().y + 10 > p1Pos.y)
-		//return 1;
+ 
+	
+	//first checking the first player
 	if (ghostObj.getPosition().x == p1Pos.x && ghostObj.getPosition().y == p1Pos.y) {
 		std::cout << ghostObj.getPosition().x << "   " << p1Pos.x << "    " << ghostObj.getPosition().y << p1Pos.y << std::endl;
 		return 1;
